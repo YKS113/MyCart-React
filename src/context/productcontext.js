@@ -24,9 +24,9 @@ M-2 we can pass props as a parametre and use {props.children} in below Appcontex
  const AppProvider= ({children}) => {
     const [state, dispatch]= useReducer(productReducer, initialState)
 
-    const getProducts= async ()=>{
+    const getProducts= async (url)=>{
         dispatch({type:"API_LOADING"});
-        try{ const res= await axios.get(API);
+        try{ const res= await axios.get(url);
         const productsData= await res.data;
         // const productsData= await res.products;
         console.log(productsData);
@@ -53,8 +53,7 @@ M-2 we can pass props as a parametre and use {props.children} in below Appcontex
     }
 
     useEffect(() => {
-      getProducts()
-      getSingleProducts()
+      getProducts(API)
     }, [])
     
     return (<AppContext.Provider value={{...state, getSingleProducts} }>{children}</AppContext.Provider> );

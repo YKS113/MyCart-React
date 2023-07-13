@@ -4,7 +4,17 @@ import cartReducer  from "../reducer/cartreducer"
 
 const CartContext = createContext();
 const getLocalStorageData=()=>{
-    return JSON.parse(localStorage.getItem("cartItems")) 
+    // return JSON.parse(localStorage.getItem("cartItems")) 
+    let localCartData = localStorage.getItem("cartItems");
+  // if (localCartData === []) {
+  //   return [];
+  // } else {
+  //   return JSON.parse(localCartData);
+  // }
+  const parsedData = JSON.parse(localCartData);
+  if (!Array.isArray(parsedData)) return [];
+
+  return parsedData;
 }
 //this func runs every time page is refreshed and provides value to cart:
 const initialState={
