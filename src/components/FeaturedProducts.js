@@ -35,7 +35,7 @@ const Wrapper= styled.div`
   padding: 9rem 0;
   background-color: ${({ theme }) => theme.colors.bg};
   .container {
-    max-width: 120rem;
+    max-width: 108rem;
   }
   figure {
     width: auto;

@@ -19,7 +19,7 @@ export default function Header() {
 const Wrapper = styled.div`
   height: 10rem;
   background-color: ${({ theme }) => theme.colors.bg};
-
+  box-shadow: 0 .5px .5px 0 rgba(0,0,0,.16);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -27,6 +27,6 @@ const Wrapper = styled.div`
   .logo {
     height: 10rem;
     margin-left: 5rem;
-    background-color: ${({ theme }) => theme.colors.helper};
+    background-color: ${({ theme }) => theme.colors.btn};
   }
 `;

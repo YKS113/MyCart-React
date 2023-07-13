@@ -5,86 +5,114 @@ import { useProductContext } from "./context/productcontext";
 import PageNavigation from "./components/PageNavigation";
 import ProductImage from "./components/ProductImage";
 import FormatPrice from "./Helpers/FormatPrice";
-import {TbTruckDelivery} from "react-icons/tb";
-import {TbReplace} from "react-icons/tb";
-import {MdSecurity} from "react-icons/md";
-import {RiSecurePaymentLine} from "react-icons/ri";
+import { TbTruckDelivery } from "react-icons/tb";
+import { TbReplace } from "react-icons/tb";
+import { MdSecurity } from "react-icons/md";
+import { RiSecurePaymentLine } from "react-icons/ri";
 import StarRating from "./components/StarRating";
 import AddToCart from "./components/AddToCart";
-const API= "https://api.pujakaitem.com/api/products";
+const API = "https://api.pujakaitem.com/api/products";
 // const API= 'https://dummyjson.com/products';
-export default function SingleProduct(){
-  const {getSingleProducts, isSingleLoading, singleProduct}= useProductContext()
-  const {id}= useParams()
-  useEffect(()=>{
-    getSingleProducts(`${API}?id=${id}`)
-  },[])
-  const {id:alias, name, company, price, description, category, stock, stars, reviews,image} = singleProduct;
-  
-  if(isSingleLoading){
-    return <div>Loading...</div>
+export default function SingleProduct() {
+  const { getSingleProducts, isSingleLoading, singleProduct } =
+    useProductContext();
+  const { id } = useParams();
+  useEffect(() => {
+    getSingleProducts(`${API}?id=${id}`);
+  }, []);
+  const {
+    id: alias,
+    name,
+    company,
+    price,
+    description,
+    category,
+    stock,
+    stars,
+    reviews,
+    image,
+  } = singleProduct;
+
+  if (isSingleLoading) {
+    return <div>Loading...</div>;
   }
-return( <Wrapper>
-        <PageNavigation title={name}/>
-        <div className="cont">
-          <div className="grid grid-two-column cont2">
-            <div className="product-images">
-            <ProductImage imgs={image}/>
+  return (
+    <Wrapper>
+      <PageNavigation title={name} />
+      <div className="cont">
+        <div className="grid grid-two-column cont2">
+          <div className="product-images">
+            <ProductImage imgs={image} />
+          </div>
+          <div className="product-data">
+            <h2>{name}</h2>
+            <p>
+              <StarRating rating={stars} reviews={reviews} />
+            </p>
+            <p className="product-data-price">
+              MRP:{" "}
+              <del>
+                <FormatPrice price={price * 1.2} />
+              </del>
+            </p>
+            <p className="product-data-real-price">
+              Deal of the day : <FormatPrice price={price} />
+            </p>
+            <p>{description}</p>
+            <div className="product-data-warranty">
+              <div className="product-warranty-data">
+                <TbTruckDelivery className="warranty-icon" />
+                <p>Free Delivery</p>
+              </div>
+              <div className="product-warranty-data">
+                <TbReplace className="warranty-icon" />
+                <p>7 Days Replacement</p>
+              </div>
+              <div className="product-warranty-data">
+                <MdSecurity className="warranty-icon" />
+                <p>Secure Shipping</p>
+              </div>
+              <div className="product-warranty-data">
+                <RiSecurePaymentLine className="warranty-icon" />
+                <p>Secure Payment</p>
+              </div>
             </div>
-            <div className="product-data">
-              <h2>{name}</h2>
-              <p><StarRating rating={stars} reviews={reviews}/></p>
-              <p className="product-data-price">
-                MRP: <del><FormatPrice price={price*1.2}/></del>
+            <div className="product-data-info">
+              <p>
+                Available:{" "}
+                <span style={{ color: "#03753c" }}>
+                  {stock > 0 ? "In Stock" : "Out of Stock"}
+                </span>
               </p>
-              <p className="product-data-real-price">Deal of the day : <FormatPrice price={price}/></p>
-              <p>{description}</p>
-              <div className="product-data-warranty">
-               <div className="product-warranty-data">
-               <TbTruckDelivery className="warranty-icon"/>
-               <p>Free Delivery</p>
-               </div>
-               <div className="product-warranty-data">
-               <TbReplace className="warranty-icon"/>
-               <p>7 Days Replacement</p>
-               </div> 
-               <div className="product-warranty-data">
-               <MdSecurity className="warranty-icon"/>
-               <p>Secure Shipping</p>
-               </div> 
-               <div className="product-warranty-data">
-               <RiSecurePaymentLine className="warranty-icon"/>
-               <p>Secure Payment</p>
-               </div> 
-              </div>
-              <div className="product-data-info">
-              <p>Available: <span style={{color:"#03753c"}}>{stock > 0 ? "In Stock" :"Out of Stock" }</span></p>
-                <p>ID: <span>{id}</span></p>
-                <p>Brand: <span>{company}</span></p>
-              </div>
-              <hr />
-              {stock>0 && <AddToCart product={singleProduct}/>}
+              <p>
+                ID: <span>{id}</span>
+              </p>
+              <p>
+                Brand: <span>{company}</span>
+              </p>
             </div>
+            <hr />
+            {stock > 0 && <AddToCart product={singleProduct} />}
           </div>
         </div>
-        </Wrapper>)
-};
+      </div>
+    </Wrapper>
+  );
+}
 const Wrapper = styled.section`
-
   .cont {
     /* padding: 9rem 0; */
-    width:100%;
+    width: 100%;
     height: 100%;
-    padding:0px 35rem;
+    padding: 0px 10rem;
     background-color: ${({ theme }) => theme.colors.bg};
-    
   }
-  .cont2{
+  .cont2 {
     background-color: white;
     padding: 2rem;
   }
-  
-  h2{
+
+  h2 {
     font-size: 3.5rem;
     text-transform: capitalize;
   }
@@ -113,7 +141,6 @@ const Wrapper = styled.section`
           width: 4rem;
           height: 4rem;
           padding: 0.6rem;
-          
         }
         p {
           font-size: 1.4rem;
@@ -145,10 +172,9 @@ const Wrapper = styled.section`
     hr {
       max-width: 100%;
       width: 90%;
-      
+
       /* height: 0.2rem; */
       border: 0.1rem solid #000;
-      
     }
   }
 
@@ -159,10 +185,8 @@ const Wrapper = styled.section`
   }
 
   @media (max-width: ${({ theme }) => theme.media.mobile}) {
-    .cont { 
-    padding:5rem 5rem;
-  }
+    .cont {
+      padding: 5rem 5rem;
+    }
   }
 `;
-
-

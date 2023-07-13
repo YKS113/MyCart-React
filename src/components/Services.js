@@ -32,7 +32,7 @@ export default function Services(){
 }
 
 const Wrapper= styled.div`
- padding: 9rem 0;
+ padding: 9rem 10rem;
   .grid {
     gap: 4.8rem;
   }
@@ -87,5 +87,5 @@ const Wrapper= styled.div`
     padding: 2rem;
     border-radius: 50%;
     background-color: #fff;
-    color: #5138ee;}
+    color: ${({ theme }) => theme.colors.btn};}
 `;

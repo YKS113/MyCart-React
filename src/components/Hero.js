@@ -24,8 +24,8 @@ export default function Hero(props) {
 }
 
 const Wrapper = styled.section`
-  padding: 12rem 0;
-  margin: 0px 5rem;
+  padding: 9rem 0;
+  margin: 0px 10rem;
   
  
   img {

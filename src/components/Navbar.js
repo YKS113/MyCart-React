@@ -48,7 +48,7 @@ const Wrapper = styled.div`
         }
         &:hover,
         &:active { 
-          color: ${({ theme }) => theme.colors.helper};
+          color: ${({ theme }) => theme.colors.btn};
         }
       }
     }

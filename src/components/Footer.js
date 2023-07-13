@@ -76,6 +76,7 @@ const Wrapper= styled.div`
     p{
       justify-self:center;
       align-self:center;
+      font-size: 1.75rem;
     }
     .btn{
       
