@@ -27,6 +27,6 @@ const Wrapper = styled.div`
   .logo {
     height: 10rem;
     margin-left: 5rem;
-    background-color: ${({ theme }) => theme.colors.btn};
+    background-color:  rgba(115, 0, 230,0.9);
   }
 `;
